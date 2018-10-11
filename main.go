@@ -148,5 +148,4 @@ func main() {
 
 	http.HandleFunc("/igcinfo/api/", handlerAPI)
 	http.HandleFunc("/igcinfo/api/igc/", handlerIGC)
-	http.ListenAndServe("127.0.0.1:8080", nil)
 }
