@@ -135,6 +135,8 @@ func handlerIGC(w http.ResponseWriter, r *http.Request) {
 			http.Header.Add(w.Header(), "content-type", "application/json")
 			json.NewEncoder(w).Encode(ids)
 		}
+	default:
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 	}
 }
 
