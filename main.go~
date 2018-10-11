@@ -1,0 +1,36 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+	//"github.com/marni/goigc"
+	"net/http"
+)
+
+type Meta struct {
+	Uptime  string `json:"uptime"`
+	Info    string `json:"info"`
+	Version string `json:"version"`
+}
+
+var start time.Time
+var meta Meta
+
+func handlerAPI(w http.ResponseWriter, r *http.Request) {
+	// TODO: make the uptime string work
+	http.Header.Add(w.Header(), "content-type", "application/json")
+	elapsed := time.Since(start)
+	fmt.Sprintf(meta.Uptime, "%d h %d m %d s lol", int(elapsed.Hours()), int(elapsed.Minutes())%60, int(elapsed.Seconds())%60)
+	json.NewEncoder(w).Encode(meta)
+}
+
+func main() {
+	start = time.Now()
+
+	meta.Info = "Service for IGC tracks."
+	meta.Version = "v1"
+
+	http.HandleFunc("/igcinfo/api/", handlerAPI)
+	http.ListenAndServe("127.0.0.1:8080", nil)
+}
