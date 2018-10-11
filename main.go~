@@ -148,5 +148,5 @@ func main() {
 
 	http.HandleFunc("/igcinfo/api/", handlerAPI)
 	http.HandleFunc("/igcinfo/api/igc/", handlerIGC)
-	http.ListenAndServe("https://polar-mountain-69254.herokuapp.com/", nil)
+	http.ListenAndServe(":", nil)
 }
