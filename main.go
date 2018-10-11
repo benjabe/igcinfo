@@ -137,6 +137,11 @@ func handlerIGC(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func determineListenAddress() string {
+	port := os.Getenv("PORT")
+	return ":" + port, nil
+}
+
 func main() {
 	tracks = make(map[string]igc.Track)
 	ids = IDArray{make([]string, 0)}
@@ -148,5 +153,5 @@ func main() {
 
 	http.HandleFunc("/igcinfo/api/", handlerAPI)
 	http.HandleFunc("/igcinfo/api/igc/", handlerIGC)
-	http.ListenAndServe(":", nil)
+	http.ListenAndServe(determineListenAddress(), nil)
 }
