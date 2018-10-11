@@ -140,7 +140,7 @@ func handlerIGC(w http.ResponseWriter, r *http.Request) {
 
 func determineListenAddress() string {
 	port := os.Getenv("PORT")
-	return ":" + port, nil
+	return ":" + port
 }
 
 func main() {
